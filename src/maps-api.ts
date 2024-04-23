@@ -35,7 +35,7 @@ interface SearchResult {
 export async function getPlaceAutocomplete(
   key: string,
   address: string,
-  countryCode: string = "AU"
+  countrySet: string = "AU"
 ): Promise<Place[]> {
   const MIN_ADDRESS_LENGTH = 2;
   try {
@@ -51,7 +51,7 @@ export async function getPlaceAutocomplete(
       {
         params: {
           key,
-          countryCode,
+          countrySet,
           limit: 100,
         },
       }

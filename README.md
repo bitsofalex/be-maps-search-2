@@ -31,3 +31,10 @@ Place Search Documentation: https://developer.tomtom.com/search-api/documentatio
 4. The result elements should contain important information about the place (country, municipality, etc)
 5. The returned result should be typed and easily consumable via users of the library
 6. No front-end requirements are necessary, this is purely a backend NodeJS library
+
+# To use RestClient
+
+1. Add the RestClient extension for VSCode
+2. Configure tomTomApiKey in .vscode/settings.json
+3. Open any .rest or .http files
+4. Click `Send Request` to make a call to the endpoint

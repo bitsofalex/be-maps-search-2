@@ -27,16 +27,23 @@ export interface Place {
   position: GeoPosition;
 }
 
+interface SearchResult {
+  results: Place[];
+}
+
 // https://developer.tomtom.com/search-api/documentation/search-service/fuzzy-search
 export async function getPlaceAutocomplete(
   key: string,
   address: string
-): Promise<Place> {
+): Promise<Place[]> {
   if (!key.trim()) {
     throw new Error("API key must be provided");
   }
+  if (!address.trim()) {
+    return [];
+  }
 
-  const autocomplete: AxiosResponse = await axios.get(
+  const { data } = await axios.get<SearchResult>(
     `https://api.tomtom.com/search/2/search/${address}.json'`,
     {
       params: {
@@ -45,15 +52,5 @@ export async function getPlaceAutocomplete(
       },
     }
   );
-  return autocomplete.data.results.map(({ id, address }: Place) => {
-    return {
-      placeId: id,
-      streetNumber: address.streetNumber,
-      streetName: address.streetName,
-      countryCode: address.countryCode,
-      country: address.country,
-      freeformAddress: address.freeformAddress,
-      municipality: address.municipality,
-    };
-  });
+  return data.results;
 }

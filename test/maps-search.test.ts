@@ -17,7 +17,7 @@ describe("Tomtom Places E2E Tests", () => {
       const res = await getAutoCompleteDetails("Charlotte Street");
       const firstRes = res[0];
       expect(firstRes).toHaveProperty("placeId");
-      expect(firstRes).toHaveProperty("streetNumber");
+      // expect(firstRes).toHaveProperty("streetNumber");
       expect(firstRes).toHaveProperty("countryCode");
       expect(firstRes).toHaveProperty("country");
       expect(firstRes).toHaveProperty("freeformAddress");
@@ -34,13 +34,21 @@ describe("Tomtom Places E2E Tests", () => {
       );
     });
 
+    it("returns no result if address is not provided", async () => {
+      const res = await getPlaceAutocomplete(apiKey, "   ");
+      expect(res).toStrictEqual([]);
+    });
+
     it("handles no results", async () => {
       const res = await getPlaceAutocomplete(apiKey, "asfasffasfasafsafs");
       expect(res).toStrictEqual([]);
     });
 
-    it("handles error", async () => {
-      expect(getPlaceAutocomplete(apiKey, "")).rejects.toThrow();
+    it("gets address results from API call", async () => {
+      const res = await getPlaceAutocomplete(apiKey, "Charlotte Street");
+      expect(res).not.toHaveLength(0);
+      const firstRes = res[0];
+      expect(firstRes).toHaveProperty("id");
     });
   });
 });

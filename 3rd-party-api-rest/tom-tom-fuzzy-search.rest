@@ -1,0 +1,4 @@
+GET https://api.tomtom.com/search/2/search/Charlotte+Street.json?key={{tomTomApiKey}}&countrySet=AU
+###
+
+GET https://api.tomtom.com/search/2/search/Officeworks.json?key={{tomTomApiKey}}&countrySet=AU

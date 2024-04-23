@@ -27,6 +27,13 @@ describe("Tomtom Places E2E Tests", () => {
 
   describe("getPlaceAutocomplete", () => {
     const apiKey = process.env.TOMTOM_API_KEY || "";
+
+    it("throws error if API key is not provided", async () => {
+      await expect(getPlaceAutocomplete("  ", "any place")).rejects.toThrow(
+        "API key must be provided"
+      );
+    });
+
     it("handles no results", async () => {
       const res = await getPlaceAutocomplete(apiKey, "asfasffasfasafsafs");
       expect(res).toStrictEqual([]);

@@ -32,6 +32,10 @@ export async function getPlaceAutocomplete(
   key: string,
   address: string
 ): Promise<Place> {
+  if (!key.trim()) {
+    throw new Error("API key must be provided");
+  }
+
   const autocomplete: AxiosResponse = await axios.get(
     `https://api.tomtom.com/search/2/search/${address}.json'`,
     {

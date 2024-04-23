@@ -23,6 +23,10 @@ export async function getAutoCompleteDetails(
   } catch (error) {
     // todo use a proper logger instead of console log
     console.log(error);
+    // reason for returning an empty list is that the consumer
+    // will not be able to do anything with the error but the rest
+    // of the consumer's functionality can continue to operate without
+    // address autocompletion
     return [];
   }
 }

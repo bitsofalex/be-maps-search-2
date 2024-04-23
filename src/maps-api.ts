@@ -36,21 +36,29 @@ export async function getPlaceAutocomplete(
   key: string,
   address: string
 ): Promise<Place[]> {
-  if (!key.trim()) {
-    throw new Error("API key must be provided");
-  }
-  if (!address.trim()) {
-    return [];
-  }
-
-  const { data } = await axios.get<SearchResult>(
-    `https://api.tomtom.com/search/2/search/${address}.json'`,
-    {
-      params: {
-        key,
-        limit: 100,
-      },
+  try {
+    if (!key.trim()) {
+      throw new Error("API key must be provided");
     }
-  );
-  return data.results;
+    if (!address.trim()) {
+      return [];
+    }
+
+    const { data } = await axios.get<SearchResult>(
+      `https://api.tomtom.com/search/2/search/${address}.json'`,
+      {
+        params: {
+          key,
+          limit: 100,
+        },
+      }
+    );
+    return data.results;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(`Axios request failed: ${error.message}`);
+    } else {
+      throw error;
+    }
+  }
 }

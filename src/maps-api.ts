@@ -10,7 +10,7 @@ export interface Address {
   municipality: string;
   municipalitySubdivision: string;
   streetName: string;
-  streetNumber: string;
+  streetNumber?: string;
   postalCode: string;
 }
 

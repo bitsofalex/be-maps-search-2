@@ -46,7 +46,7 @@ export async function getPlaceAutocomplete(
       return [];
     }
 
-    const { data } = await axios.get<SearchResult>(
+    const { data }: AxiosResponse<SearchResult> = await axios.get<SearchResult>(
       `https://api.tomtom.com/search/2/search/${address}.json'`,
       {
         params: {

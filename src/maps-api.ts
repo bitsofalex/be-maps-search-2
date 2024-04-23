@@ -34,7 +34,8 @@ interface SearchResult {
 // https://developer.tomtom.com/search-api/documentation/search-service/fuzzy-search
 export async function getPlaceAutocomplete(
   key: string,
-  address: string
+  address: string,
+  countryCode: string = "AU"
 ): Promise<Place[]> {
   try {
     if (!key.trim()) {
@@ -49,6 +50,7 @@ export async function getPlaceAutocomplete(
       {
         params: {
           key,
+          countryCode,
           limit: 100,
         },
       }

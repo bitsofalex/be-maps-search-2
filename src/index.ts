@@ -1,6 +1,10 @@
-import { getPlaceAutocomplete } from "./maps-api";
+import { Address, getPlaceAutocomplete } from "./maps-api";
 
-export async function getAutoCompleteDetails(address: any): Promise<any> {
+export type AddressResult = { placeId: string } & Address;
+
+export async function getAutoCompleteDetails(
+  address: string
+): Promise<AddressResult[]> {
   const apiKey = process.env.TOMTOM_API_KEY || "";
   // get autocomplete results
   const res = getPlaceAutocomplete(apiKey, address).then(
@@ -13,6 +17,5 @@ export async function getAutoCompleteDetails(address: any): Promise<any> {
       });
     }
   );
-  // loop over and get details and map results
   return res;
 }

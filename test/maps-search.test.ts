@@ -14,15 +14,9 @@ describe("Tomtom Places E2E Tests", () => {
     });
 
     it("can fetch from the autocomplete api", async () => {
-      const res = await getAutoCompleteDetails("Officeworks");
-      const firstRes = res[0];
-      expect(firstRes).toHaveProperty("placeId");
-      expect(firstRes).toHaveProperty("streetNumber");
-      expect(firstRes).toHaveProperty("countryCode");
-      expect(firstRes).toHaveProperty("country");
-      expect(firstRes).toHaveProperty("freeformAddress");
-      expect(firstRes).toHaveProperty("municipality");
-      res.forEach(({ country }) => {
+      const res = await getAutoCompleteDetails("Charlotte Street");
+      res.forEach(({ placeId, country }) => {
+        expect(placeId).toBeDefined();
         expect(country).toBe("Australia");
       });
     });

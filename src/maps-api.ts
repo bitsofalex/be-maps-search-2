@@ -6,12 +6,12 @@ export interface Address {
   countryCode: string;
   countryCodeISO3: string;
   countrySubdivision: string;
-  countrySecondarySubdivision: string;
-  municipality: string;
-  municipalitySubdivision: string;
-  streetName: string;
+  countrySecondarySubdivision?: string;
+  municipality?: string;
+  municipalitySubdivision?: string;
+  streetName?: string;
   streetNumber?: string;
-  postalCode: string;
+  postalCode?: string;
 }
 
 export interface GeoPosition {

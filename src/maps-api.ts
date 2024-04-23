@@ -37,11 +37,12 @@ export async function getPlaceAutocomplete(
   address: string,
   countryCode: string = "AU"
 ): Promise<Place[]> {
+  const MIN_ADDRESS_LENGTH = 2;
   try {
     if (!key.trim()) {
       throw new Error("API key must be provided");
     }
-    if (!address.trim()) {
+    if (address.trim().length < MIN_ADDRESS_LENGTH) {
       return [];
     }
 

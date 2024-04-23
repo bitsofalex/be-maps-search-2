@@ -35,8 +35,8 @@ describe("Tomtom Places E2E Tests", () => {
     });
 
     it("returns no result if address is not provided", async () => {
-      const res = await getPlaceAutocomplete(apiKey, "   ");
-      expect(res).toStrictEqual([]);
+      expect(await getPlaceAutocomplete(apiKey, "   ")).toStrictEqual([]);
+      expect(await getPlaceAutocomplete(apiKey, "C")).toStrictEqual([]);
     });
 
     it("handles no results", async () => {

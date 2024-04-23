@@ -1,26 +1,30 @@
 import axios, { AxiosResponse } from "axios";
 
-interface Place {
+export interface Address {
+  freeformAddress: string;
+  country: string;
+  countryCode: string;
+  countryCodeISO3: string;
+  countrySubdivision: string;
+  countrySecondarySubdivision: string;
+  municipality: string;
+  municipalitySubdivision: string;
+  streetName: string;
+  streetNumber: string;
+  postalCode: string;
+}
+
+export interface GeoPosition {
+  lat: number;
+  lon: number;
+}
+
+export interface Place {
   id: string;
   type: string;
   score: number;
-  address: {
-    freeformAddress: string;
-    country: string;
-    countryCode: string;
-    countryCodeISO3: string;
-    countrySubdivision: string;
-    countrySecondarySubdivision: string;
-    municipality: string;
-    municipalitySubdivision: string;
-    streetName: string;
-    streetNumber: string;
-    postalCode: string;
-  };
-  position: {
-    lat: number;
-    lon: number;
-  };
+  address: Address;
+  position: GeoPosition;
 }
 
 // https://developer.tomtom.com/search-api/documentation/search-service/fuzzy-search

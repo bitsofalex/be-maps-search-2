@@ -1,35 +1,35 @@
 import axios, { AxiosResponse } from "axios";
 
-export interface Address {
-  freeformAddress: string;
-  country: string;
-  countryCode: string;
-  countryCodeISO3: string;
-  countrySubdivision: string;
+export type Address = {
+  freeformAddress?: string;
+  country?: string;
+  countryCode?: string;
+  countryCodeISO3?: string;
+  countrySubdivision?: string;
   countrySecondarySubdivision?: string;
   municipality?: string;
   municipalitySubdivision?: string;
   streetName?: string;
   streetNumber?: string;
   postalCode?: string;
-}
+};
 
-export interface GeoPosition {
-  lat: number;
-  lon: number;
-}
+export type GeoPosition = {
+  lat?: number;
+  lon?: number;
+};
 
-export interface Place {
+export type Place = {
   id: string;
   type: string;
   score: number;
-  address: Address;
-  position: GeoPosition;
-}
+  address?: Address;
+  position?: GeoPosition;
+};
 
-interface SearchResult {
+type SearchResult = {
   results: Place[];
-}
+};
 
 // https://developer.tomtom.com/search-api/documentation/search-service/fuzzy-search
 export async function getPlaceAutocomplete(

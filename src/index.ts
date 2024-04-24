@@ -21,7 +21,7 @@ export async function getAutoCompleteDetails(
       };
     });
   } catch (error) {
-    // todo use a proper logger instead of console log
+    // todo use a proper logger instead of console log and raise alert on error
     console.log(error);
     // reason for returning an empty list is that the consumer
     // will not be able to do anything with the error but the rest

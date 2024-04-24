@@ -8,7 +8,7 @@ export async function getAutoCompleteDetails(
   const apiKey = process.env.TOMTOM_API_KEY;
 
   try {
-    if (!apiKey) {
+    if (!apiKey || !apiKey.trim()) {
       throw new Error("Missing configuration: API key");
     }
 
